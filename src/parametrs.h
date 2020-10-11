@@ -1,4 +1,4 @@
 #pragma once
 
-#define MAX_FREQUENCY 0x000FFFFF
-#define AGGRESIVENESS 50
+#define MAX_FREQUENCY 0x00000FFF
+#define AGGRESIVENESS 18
