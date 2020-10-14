@@ -7,14 +7,14 @@ void update_frequency_ppm(u_int32_t freq[NUM_OF_SYM+1], u_int32_t index)
 {
     for (u_int32_t i = index; i <= NUM_OF_SYM; ++i)
     {
-        freq[i] += 1;
+        freq[i] += PPM_AGGRESSIVNESS;
     }
     if (freq[NUM_OF_SYM] >= MAX_FREQUENCY_PPM)
     {
         u_int32_t mistake = 0;
         for (u_int32_t i = 1; i <= NUM_OF_SYM; ++i)
         {
-            freq[i] = (u_int32_t)((freq[i] + 1)/(1+1)) + mistake;
+            freq[i] = (u_int32_t)((freq[i] + 1)/(PPM_AGGRESSIVNESS+1)) + mistake;
             if (freq[i] == freq[i-1])
             {
                 ++freq[i];
@@ -51,7 +51,7 @@ void compress_ppm(char *ifile, char *ofile) {
     FILE *ifp = (FILE *)fopen(ifile, "rb");
     FILE *ofp = (FILE *)fopen(ofile, "wb");
 
-
+    
     u_int32_t *tables[NUM_OF_SYM];
     for (int i = 0; i < NUM_OF_SYM; ++i)
     {
@@ -148,6 +148,7 @@ void compress_ppm(char *ifile, char *ofile) {
 void decompress_ppm(char *ifile, char *ofile) {
     FILE *ifp = (FILE *)fopen(ifile, "rb");
     FILE *ofp = (FILE *)fopen(ofile, "wb");
+
 
     u_int32_t *tables[NUM_OF_SYM];
     for (int i = 0; i < NUM_OF_SYM; ++i)
