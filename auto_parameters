@@ -1,10 +1,10 @@
 #!/bin/bash
-for ((i=1; i<=50;i++))
+for ((i=10; i<=30;i++))
 do
-	python3 parametrs_scaling.py 0x000FFFFF $i
+	python3 parametrs_scaling.py 0x000DFFFF $i
 	cd build/
 	make
 	cd ../
 	python3 tests/run.py
-	python3 gather_statistic.py 0x000FFFFF $i
+	python3 gather_statistic.py 0x000DFFFF $i
 done
